@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+<!-- cfgs java.util.date Class a spring bean (dependent class)-->
+<bean id="dt" class="java.util.Date"/>
+
+<bean id="dt1" class="java.util.Date">
+<property name="year" value="110"/><!-- takes 1900+ given values(1900+110=2010 -->
+<property name="month" value="4"/><!-- 0 to 11 -->
+<property name="date" value="21"/><!-- 1 to 31 -->
+</bean>
+
+<!-- cfg WishMessageGenerator as Spring bean  (Target class) -->
+<bean id="wmg" class="com.nt.beans.WishMessageGenerator">
+<property name="date" ref="dt1"/>
+<constructor-arg name="date" ref="dt"/><!-- Enabling constructor injection having "dt" bean id based java.util.Date class obj as the dependent -->
+</bean>
+
+</beans>
